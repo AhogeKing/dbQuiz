@@ -115,6 +115,7 @@
         <div id="progress"></div>
         <p id="questionText"></p>
         <form id="optionsForm"></form>
+        <button id="prevBtn" disabled>上一题</button>
         <button id="submitBtn">提交答案</button>
         <div id="feedback" class="feedback"></div>
     </div>
@@ -135,7 +136,7 @@
             { "id": 3, "text": "设有课程关系Course（课程号，课程名，学分，开设专业号，先修课程号）和专业关系Speciality（专业号，专业名）和课程关系Course的外键是？", "options": ["先修课程号", "开设专业号", "开设专业号和先修课程号", "课程号"], "answer": 2 },
             { "id": 4, "text": "数据库的三级模式之间存在着两级映像，使得数据库系统具有较高的", "options": ["数据独立性", "事务并发性", "数据可靠性", "数据重用性"], "answer": 0 },
             { "id": 5, "text": "DBS是( )的简写。", "options": ["数据库管理系统", "数据库", "数据库系统", "操作系统"], "answer": 2 },
-            { "id": 6, "text": "要保证数据库的物理独立性，需要修改的是( )", "options": ["内模式", "模式", "模式与内模式的映射", "模式与外模式的映射"], "answer": 3 },
+            { "id": 6, "text": "要保证数据库的物理独立性，需要修改的是( )", "options": ["内模式", "模式", "模式与内模式的映射", "模式与外模式的映射"], "answer": 2 },
             { "id": 7, "text": "数据视图属于三级模式中的 ( )", "options": ["存储模式", "内模式", "外模式", "模式"], "answer": 2 },
             { "id": 8, "text": "位于用户和数据库之间的一层数据管理软件是 ( ) ", "options": ["DBS", "DB", "MIS", "DBMS"], "answer": 3 },
             { "id": 9, "text": "下列不属于数据库管理系统的是（ ）", "options": ["Python", "Oracle", "SQL server", "MySQL"], "answer": 0 },
@@ -171,12 +172,13 @@
 
         /* ========== 逻辑实现 ========== */
         function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
-        let questions = [], idx = 0, score = 0, wrong = [];
+        let questions = [], idx = 0, userAnswers = [];
         let awaitingNext = false;
 
         const $ = (id) => document.getElementById(id);
         $('startBtn').onclick = startQuiz;
         $('submitBtn').onclick = submitAnswer;
+        $('prevBtn').onclick = prevQuestion;
         $('restartBtn').onclick = () => { $('resultsArea').classList.add('hidden'); $('setup').classList.remove('hidden'); };
 
         function startQuiz() {
@@ -191,7 +193,10 @@
                 ...(sel === 'all' ? CHAPTER_1.concat(CHAPTER_2, CHAPTER_3, CHAPTER_4, CHAPTER_5, CHAPTER_6) : [])
             ];
             if (!questions.length) { alert('该章节暂未添加题目！'); return; }
-            shuffle(questions); idx = score = 0; wrong = []; awaitingNext = false;
+            shuffle(questions);
+            idx = 0;
+            userAnswers = new Array(questions.length).fill(null);
+            awaitingNext = false;
             $('setup').classList.add('hidden'); $('quizArea').classList.remove('hidden');
             render();
         }
@@ -205,9 +210,28 @@
                 f.insertAdjacentHTML('beforeend',
                     `<label class="option-label"><input type="radio" name="opt" value="${i}"> ${String.fromCharCode(65 + i)}. ${op}</label>`);
             });
-            $('feedback').textContent = '';
-            $('feedback').className = 'feedback';
-            $('submitBtn').textContent = '提交答案';
+            // 恢复已做答案并显示反馈
+            const saved = userAnswers[idx];
+            if (saved !== null) {
+                document.querySelector(`input[name="opt"][value="${saved}"]`).checked = true;
+                const ca = q.answer;
+                if (saved === ca) {
+                    $('feedback').textContent = '回答正确！';
+                    $('feedback').classList.add('correct');
+                } else {
+                    $('feedback').textContent = `回答错误！正确答案是 ${String.fromCharCode(65 + ca)}.`;
+                    $('feedback').classList.add('incorrect');
+                }
+                awaitingNext = true;
+                $('submitBtn').textContent = idx + 1 === questions.length ? '查看结果' : '下一题';
+            } else {
+                $('feedback').textContent = '';
+                $('feedback').className = 'feedback';
+                awaitingNext = false;
+                $('submitBtn').textContent = '提交答案';
+            }
+            // 首题禁用“上一题”
+            $('prevBtn').disabled = (idx === 0);
         }
 
         function submitAnswer() {
@@ -216,11 +240,13 @@
                 if (!sel) { alert('请选择一个选项！'); return; }
                 const ua = +sel.value, ca = questions[idx].answer;
                 if (ua === ca) {
-                    score++; $('feedback').textContent = '回答正确！'; $('feedback').classList.add('correct');
+                    $('feedback').textContent = '回答正确！';
+                    $('feedback').classList.add('correct');
                 } else {
-                    $('feedback').textContent = `回答错误！正确答案是 ${String.fromCharCode(65 + ca)}.`; $('feedback').classList.add('incorrect');
-                    wrong.push({ q: questions[idx], ua });
+                    $('feedback').textContent = `回答错误！正确答案是 ${String.fromCharCode(65 + ca)}.`;
+                    $('feedback').classList.add('incorrect');
                 }
+                userAnswers[idx] = ua;
                 awaitingNext = true;
                 $('submitBtn').textContent = idx + 1 === questions.length ? '查看结果' : '下一题';
             } else {
@@ -229,16 +255,36 @@
             }
         }
 
+        function prevQuestion() {
+            if (idx === 0) return;
+            idx--;
+            render();
+        }
+
         function showResult() {
-            $('quizArea').classList.add('hidden'); $('resultsArea').classList.remove('hidden');
-            const acc = (score / questions.length * 100).toFixed(2);
-            $('scoreText').textContent = `共回答 ${questions.length} 题，正确 ${score} 题，正确率 ${acc}%`;
+            $('quizArea').classList.add('hidden');
+            $('resultsArea').classList.remove('hidden');
+            let correctCount = 0;
+            const wrongItems = [];
+            userAnswers.forEach((ua, i) => {
+                if (ua === questions[i].answer) {
+                    correctCount++;
+                } else {
+                    wrongItems.push({ q: questions[i], ua });
+                }
+            });
+            const acc = (correctCount / questions.length * 100).toFixed(2);
+            $('scoreText').textContent = `共回答 ${questions.length} 题，正确 ${correctCount} 题，正确率 ${acc}%`;
             const wl = $('wrongList'); wl.innerHTML = '';
-            if (!wrong.length) { wl.textContent = '全部答对，恭喜！'; return; }
-            wrong.forEach((w, i) => {
+            if (!wrongItems.length) {
+                wl.textContent = '全部答对，恭喜！';
+                return;
+            }
+            wrongItems.forEach((w, i) => {
                 wl.insertAdjacentHTML('beforeend',
                     `<div class="wrong-question"><strong>题目${i + 1}：</strong>${w.q.text}<br>
-       你的答案：${String.fromCharCode(65 + w.ua)}；正确答案：${String.fromCharCode(65 + w.q.answer)}</div>`);
+                     你的答案：${String.fromCharCode(65 + w.ua)}. ${w.q.options[w.ua]}<br>
+                     正确答案：${String.fromCharCode(65 + w.q.answer)}. ${w.q.options[w.q.answer]}</div>`);
             });
         }
     </script>
