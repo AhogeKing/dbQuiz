@@ -181,7 +181,219 @@
             { "id": 14, "text": "一个职工可参加多项比赛，一项比赛可多个职工参加，在用E-R图描述职工和比赛项目之间的联系图中,联系转换为关系模式时,该关系模式的码为( )", "options": ["职工和比赛项目的码的组合", "比赛项目的码", "以上三者都不是", "职工的码"], "answer": 0 },
             { "id": 15, "text": "某学校的综合管理系统设计阶段，教师实体在学籍管理子系统中被称为“教师”，而在人事管理子系统中被称为“职工”，这类冲突被称之为( )。", "options": ["语义冲突", "结构冲突", "命名冲突", "属性冲突"], "answer": 2 },
         ];
-        const CHAPTER_3 = [];
+        const CHAPTER_3 = [
+                {
+                    id: 1,
+                    text: "MySQL 数据库中有六种触发器:____、____、____、____、____、____。",
+                    answer: ["Before Insert", "After Insert", "Before Update", "After Update", "Before Delete", "After Delete"]
+                },
+                {
+                    id: 2,
+                    text: "MySQL中，显式开启事务的语句是____。",
+                    answer: ["START TRANSACTION"]
+                },
+                {
+                    id: 3,
+                    text: "MySQL提供了____语句用于收回指定用户的指定权限。",
+                    answer: ["revoke"]
+                },
+                {
+                    id: 4,
+                    text: "MySQL事务的四大特性是:____、____、____、____。",
+                    answer: ["原子性", "一致性", "隔离性", "持久性"]
+                },
+                {
+                    id: 5,
+                    text: "MySQL中常见的索引大致分为普通索引、主键索引、____ 、全文索引、空间索引。",
+                    answer: ["唯一索引"]
+                },
+                {
+                    id: 6,
+                    text: "MySQL事务的四大特性是:原子性、一致性、____、____。",
+                    answer: ["隔离性", "持久性"]
+                },
+                {
+                    id: 7,
+                    text: "MySQL中事务的4个特性分别是____、一致性、隔离性、持久性。",
+                    answer: ["原子性"]
+                },
+                {
+                    id: 8,
+                    text: "每个事务都是完整不可分割的最小单元是事务的____。",
+                    answer: ["原子性"]
+                },
+                {
+                    id: 9,
+                    text: "在MySQL中，只允许从一个集合中取得某一个值的数据类型是 ____ 。",
+                    answer: ["ENUM"]
+                },
+                {
+                    id: 10,
+                    text: "MySQL中数据还原可以使用mysql命令和____命令实现。",
+                    answer: ["source"]
+                },
+                {
+                    id: 11,
+                    text: "普通索引使用KEY或____定义。",
+                    answer: ["INDEX"]
+                },
+                {
+                    id: 12,
+                    text: "① 授权 webadmin 用户 ... ② 撤销 webadmin 用户的授权权限，对应的 MySQL 代码是: ____;",
+                    answer: [
+                        'grant all on bbsdb.* to webadmin@"%" identified by “123456” with grant option;',
+                        'revoke grant option on bbsdb.* from webadmin@"%"'
+                    ]
+                },
+                {
+                    id: 13,
+                    text: "事务的隔离级别有读未提交、读已提交、可重复读、串行化。Mysql 默认的事务隔离级别是____。",
+                    answer: ["可重复读"]
+                },
+                {
+                    id: 14,
+                    text: "Mysql 的 binlog 有 3 种录入格式，分别是:____，____和____。",
+                    answer: ["statement", "row", "mixed"]
+                },
+                {
+                    id: 15,
+                    text: "事务A、B交替执行，事务A被事务B干扰到了，因为事务A读取到事务B未提交的数据,这就是____;在一个事务范围内，两个相同的查询，读取同一条记录，却返回了不同的数据，这就是____;事务A查询一个范围的结果集，另一个并发事务B往这个范围中插入/删除了数据，并静悄悄地提交，然后事务A再次查询相同的范围，两次读取得到的结果集不一样了，这就是____。",
+                    answer: ["脏读", "不可重复读", "幻读"]
+                },
+                {
+                    id: 16,
+                    text: "用于事务回滚的 SQL 语句是____，用于事务提交的 SQL 语句是____。",
+                    answer: ["ROLLBACK", "COMMIT"]
+                },
+                {
+                    id: 17,
+                    text: "InnoDB____，MyISAM____;InnoDB____，MyISAM____。MySQL 游标使用步骤是____、____、____、____。指令分别是____、____、____、____。",
+                    answer: [
+                        "支持事务", "不支持事务", "支持外键", "不支持外键",
+                        "声明游标", "打开游标", "读取游标", "关闭游标",
+                        "DECLARE", "OPEN", "FETCH", "CLOSE"
+                    ]
+                },
+                {
+                    id: 18,
+                    text: "事务A、B交替执行，事务A被事务B干扰到了，因为事务A读取到事务B未提交的数据,这就是____;在一个事务范围内，两个相同的查询，读取同一条记录，却返回了不同的数据，这就是不可重复读;事务A查询一个范围的结果集，另一个并发事务B往这个范围中插入/删除了数据，并静悄悄地提交，然后事务A再次查询相同的范围，两次读取得到的结果集不一样了，这就是____。",
+                    answer: ["脏读", "幻读"]
+                },
+                {
+                    id: 19,
+                    text: "MySQL 在 INSERT 型触发器中，____ 用来表示将要____或已经____插入的新数据; 在 ____ 型触发器中，____ 用来表示将要或已经被修改的原数据，____ 用来表示将要或已经修改为的新数据; 在 ____ 型触发器中，____ 用来表示将要或已经被删除的原数据。",
+                    answer: ["NEW", "BEFORE", "AFTER", "UPDATE", "OLD", "NEW", "DELETE", "OLD"]
+                },
+                {
+                    id: 20,
+                    text: "在 MySQL 中，函数体中必须含有一条有效的____语句。",
+                    answer: ["return"]
+                },
+                {
+                    id: 21,
+                    text: "MySQL 中通过____语句提交事务。",
+                    answer: ["COMMIT"]
+                },
+                {
+                    id: 22,
+                    text: "如果不想提交当前事务，可以使用____语句回滚事务。",
+                    answer: ["ROLLBACK"]
+                },
+                {
+                    id: 23,
+                    text: "在 MySQL 中，DROP VIEW 语句用于____。",
+                    answer: ["删除视图"]
+                },
+                {
+                    id: 24,
+                    text: "若某个 table 数据量少或者数据更新比较频繁或者区分度低的字段(如性别、民族)____。",
+                    answer: ["不适合加索引"]
+                },
+                {
+                    id: 25,
+                    text: "若某个表的数据量少或者数据更新比较频繁或者区分度低的字段(如性别、民族)____。",
+                    answer: ["不适合加索引"]
+                },
+                {
+                    id: 26,
+                    text: "在 MySQL 中，调用存储过程的语句是 ____。",
+                    answer: ["call"]
+                },
+                {
+                    id: 27,
+                    text: "并发操作会带来数据不一致性包括____、不可重复读、读脏数据。",
+                    answer: ["丢失修改"]
+                },
+                {
+                    id: 28,
+                    text: "MySQL 服务默认占用____端口。",
+                    answer: ["3306"]
+                },
+                {
+                    id: 29,
+                    text: "MySQL 在 INSERT 型触发器中，____用来表示将要____或已经____插入的新数据; 在 ____ 型触发器中，OLD 用来表示将要或已经被修改的原数据，NEW 用来表示将要或已经修改为的新数据; 在 DELETE 型触发器中，OLD 用来表示将要或已经被删除的原数据。",
+                    answer: ["NEW", "BEFORE", "AFTER", "UPDATE"]
+                },
+                {
+                    id: 30,
+                    text: "____ 在 20 世纪 80 年代被 ANSI 和 ISO 定义为关系型数据库语言的标准。",
+                    answer: ["SQL"]
+                },
+                {
+                    id: 31,
+                    text: "为用户授予权限时，____ 表示全局级别的权限。",
+                    answer: ["*.*"]
+                },
+                {
+                    id: 32,
+                    text: "存储过程的过程体以____表示过程体的开始，以 END 表示结束。",
+                    answer: ["BEGIN"]
+                },
+                {
+                    id: 33,
+                    text: "MySQL 视图的优点有____、____、____。",
+                    answer: ["查询简单化", "增强数据安全性", "提高逻辑数据独立性"]
+                },
+                {
+                    id: 34,
+                    text: "MySQL 中打开游标使用____关键字。",
+                    answer: ["OPEN"]
+                },
+                {
+                    id: 35,
+                    text: "InnoDB____，MyISAM____;InnoDB____，MyISAM____。MySQL 游标使用步骤是____、____、____、____。指令为 DECLARE、OPEN、____、____。",
+                    answer: [
+                        "支持事务", "不支持事务", "支持外键", "不支持外键",
+                        "声明游标", "打开游标", "读取游标", "关闭游标",
+                        "FETCH", "CLOSE"
+                    ]
+                },
+                {
+                    id: 36,
+                    text: "并发操作会带来数据不一致性包括____、____、____。",
+                    answer: ["丢失修改", "不可重复读", "读脏数据"]
+                },
+                {
+                    id: 37,
+                    text: "mysqldump 命令备份多个数据库时，数据库名称之间用____隔开。",
+                    answer: ["空格"]
+                },
+                {
+                    id: 38,
+                    text: "MySQL 提供的____命令可以将数据库导出成 SQL 脚本，以实现数据的备份。",
+                    answer: ["mysqldump"]
+                },
+                {
+                    id: 39,
+                    text: "事务日志的用途是____。",
+                    answer: ["数据恢复"]
+                },
+                {
+                    id: 40,
+                    text: "用于事务回滚的 SQL 语句是____，用于事务提交的 SQL 语句是 COMMIT。",
+                    answer: ["ROLLBACK"]
+                }
+            ];
         const CHAPTER_4 = [
             { "id": 1, "text": "设有课程关系Course(课程号，课程名，学分，开设专业号，先修课程号)和专业关系Speciality(专业号，专业名)，则课程关系Course的外键是( )", "options": ["开设专业号和先修课程号", "先修课程号", "课程号", "开设专业号"], "answer": 0 },
             { "id": 2, "text": "用树结构表示实体以及实体间联系的数据模型称为( )", "options": ["面向对象模型", "关系模型", "层次模型", "网状模型"], "answer": 2 },
@@ -190,7 +402,7 @@
             { "id": 5, "text": "查询没有选修课程号为C2课程的学生学号、姓名和年龄，下面写法正确的是( )", "options": ["Πsno,sname,age(SC)-Πsno,sname,age(SC) ∞Πsno(σcno='C2' (S))", " Πsno,sname,age(S)-Πsno,sname,age(S) ∞Πsno(σcno='C2' (SC))", "Πsno,sname,age(SC)-Πsno,sname (SC) ∞Πsno(σcno='C2' (SC))", "Πsno,sname,age(C)-Πsno,sname,age(C) ∞Πsno(σcno='C2' (SC))"], "answer": 1 },
             { "id": 6, "text": "设关系R有m个元组，假如对R关系作投影运算，其运算结果的元组个数为 ( )", "options": ["m", "小于等于m", "无法判断", "小于m"], "answer": 1 },
             { "id": 7, "text": "关系模型中，一个候选码()", "options": ["可由多个属性构成", "至多由一个属性组成", "以上都不是", "必须由多个属性组成"], "answer": 0 },
-            { "id": 8, "text": "位于用户和数据库之间的一层数据管理软件是关系模式R(U，F)中，U={A，B，C，D，E，G}，F={B→D，DG→C,BD→E,AG→B,ADG→BC}；则R的最小函数依赖集Fm是( )", "options": ["DBSFm={B → D,B→ E,AG→ B}", "Fm={B → D,DG→ C,B→ E,AG→ B}", "Fm={DG→ C,B→ E,AG→ B}", "Fm={B → D,DG→ C,AG→ B}"], "answer": 1 },
+            { "id": 8, "text": "关系模式R(U，F)中，U={A，B，C，D，E，G}，F={B→D，DG→C,BD→E,AG→B,ADG→BC}；则R的最小函数依赖集Fm是( )", "options": ["Fm={B → D,B→ E,AG→ B}", "Fm={B → D,DG→ C,B→ E,AG→ B}", "Fm={DG→ C,B→ E,AG→ B}", "Fm={B → D,DG→ C,AG→ B}"], "answer": 1 },
             { "id": 9, "text": "如果关系R和S进行自然连接时,再把左边关系R中原该舍弃的元组保存到结果关系中，这种操作称为 ( )", "options": ["内连接", "左外连接", "左连接", "右连接"], "answer": 2 },
             { "id": 10, "text": "在数据模型的三要素中，最基本、最核心的是( )", "options": ["数据恢复", "完整性规则", "数据结构", "数据操作"], "answer": 2 },
             { "id": 11, "text": "下面哪个选项不是关系模式R<U,F>中，U={A,B,C,D,E,G,K}，F={AB→C,B→DE,C→G,G→A}候选码。( )", "options": ["BCK", "ABK", "ABC", "BGK"], "answer": 2 },
@@ -222,134 +434,243 @@
             { "id": 5, "text": "设计模式属于数据库设计的( )", "options": ["物理设计", "概念设计", "需求分析", "逻辑设计"], "answer": 3 },
             { "id": 6, "text": "下列关于数据库设计的叙述中，正确的是( )", "options": ["在逻辑设计阶段建立数据字典", "在物理设计阶段建立数据字典", "在需求分析阶段建立数据字典", "在概念设计阶段建立数据字典"], "answer": 2 },
             { "id": 7, "text": "在进行数据库设计时通常是要先建立概念模型，用来表示实体类型及实体间联系的( )", "options": ["数据流图", "模块图", "程序框图", "E-R图"], "answer": 3 },
-            { "id": 8, "text": "数据库物理设计的主要内容是( )。数据库设计中，用E-R图来描述信息结构但不涉及信息在计算机中的表示，它属于数据库设计的( )", "options": ["概念设计阶段", "物理设计阶段", "需求设计阶段", "逻辑设计阶段"], "answer": 0 },
+            { "id": 8, "text": "数据库设计中，用E-R图来描述信息结构但不涉及信息在计算机中的表示，它属于数据库设计的( )", "options": ["概念设计阶段", "物理设计阶段", "需求设计阶段", "逻辑设计阶段"], "answer": 0 },
             { "id": 9, "text": "在数据库设计中，将E-R图转换成关系数据模型的过程属于( )", "options": ["需求分析阶段", "逻辑分析阶段", "概念分析阶段", "物理设计阶段"], "answer": 1 },
             { "id": 10, "text": "概念结构设计主目标产数据库的概念结构，该结构主要反映( )", "options": ["企业组织的信息需求", "数据库系统的维护需求", "应用程序员的编程需求", "DBA的管理信息需求"], "answer": 0 },
             { "id": 11, "text": "关系规范化在数据库设计的( )阶段进行", "options": ["物理设计", "逻辑设计", "概念设计", "需求分析"], "answer": 1 },
             { "id": 12, "text": "从 E-R 模型关系向关系模型转换时，一个 M:N 联系转换为关系模式时， 该关系模式的关键字是( )", "options": ["N端实体的关键字", "M端实体的关键字", "重新选择其他属性", "M 端实体关键字与 N 端实体关键字组合"], "answer": 3 },
             { "id": 13, "text": "数据库设计员和用户之间沟通信息的桥梁是( )", "options": ["模块结构图", "数据结构图", "程序流程图", "实体联系图"], "answer": 3 },
             { "id": 14, "text": "在某学校的综合管理系统设计阶段，教师实体在学籍管理子系统中被称为“教师”，而在人事管理子系统中被称为“职工”，这类冲突被称之为( )", "options": ["命名冲突", "语义冲突", "属性冲突", "结构冲突"], "answer": 0 },
-            { "id": 15, "text": "概念设计段设计概念模型通常采用( )", "options": ["自顶向下", "回溯", "面向对象", "自顶向上"], "answer": 3 },
+            { "id": 15, "text": "概念设计段设计概念模型通常采用( )", "options": ["自顶向下", "回溯", "面向对象", "自底向上"], "answer": 3 },
             ];
-        const CHAPTER_6 = [];
+        const CHAPTER_6 = [
+        {
+                id: 1,
+                text: "事务日志的用途是___",
+                answer: ["数据恢复"]
+            },
+            {
+                id: 2,
+                text: "事务是数据库运行的基本单位。如果一个事务执行成功，则全部更新提交; 如果一个事务执行失败，则已做过的更新被恢复原状，好像整个事务从未有过这些更新，这样保持了数据库处于____状态。",
+                answer: ["一致性"]
+            },
+            {
+                id: 3,
+                text: "事务A查询一个范围的结果集，另一个并发事务B往这个范围中插入/删除了数据，并静悄悄地提交，然后事务A再次查询相同的范围，两次读取得到的结果集不一样了，这就是____。",
+                answer: ["幻读"]
+            },
+            {
+                id: 4,
+                text: "索引是一个排序的列表，在这个列表中存储着索引的值和包含这个值的数据所在行的____(类似于c语言的链表通过指针指向数据记录的内存地址)。",
+                answer: ["物理地址"]
+            },
+            {
+                id: 5,
+                text: "MySQL事务的四大特性是:____、____、____、____。并发操作会带来数据不一致性包括丢失修改、____、读脏数据。用于事务回滚的SQL语句是____，用于事务提交的SQL语句是COMMIT。事务的隔离级别有读未提交、____、可重复读、串行化，Mysql默认的事务隔离级别是可重复读。",
+                answer: ["原子性", "一致性", "隔离性", "持久性", "不可重复度", "rollback", "读已提交"]
+            },
+            {
+                id: 6,
+                text: "若某个table数据量少或者数据更新比较频繁或者区分度低的字段(如性别、民族)____。",
+                answer: ["不适合加索引"]
+            },
+            {
+                id: 7,
+                text: "事务A、B交替执行，事务A被事务B干扰到了，因为事务A读取到事务B未提交的数据,这就是____。",
+                answer: ["脏读"]
+            },
+            {
+                id: 8,
+                text: "在一个事务范围内，两个相同的查询，读取同一条记录，却返回了不同的数据，这就是____。",
+                answer: ["不可重复读"]
+            },
+            {
+                id: 9,
+                text: "MySQL提供了repeatable read 、serializable 、read committed 以及read uncommitted 等4种事务隔离级别，其中隔离限度最高的是 serializable ，默认的隔离级别是____。",
+                answer: ["repeatable read"]
+            },
+            {
+                id: 10,
+                text: "索引就好比是一本书的目录，可以根据目录中的页码快速找到所需的内容。索引是一种加速数据访问的结构，可以让数据库快速查找到特定的数据。通过索引，查询的时间复杂度从____，极大提高了查询效率。",
+                answer: ["O(N)降低到O(Logn)"]
+            },
+            {
+                id: 11,
+                text: "在UPDATE触发程序中，可使用____关键字引用更新前的那条记录。",
+                answer: ["old"]
+            },
+            {
+                id: 12,
+                text: "InnoDB支持事务，MyISAM不支持事务;InnoDB支持外键，MyISAM不支持外键。MySQL游标的使用方法(使用步骤)是声明游标、打开游标、读取游标、关闭游标。MySQL声明游标指令____、打开游标指令是____、读取游标指令____、关闭游标指令____。",
+                answer: ["DECLARE", "OPEN", "FETCH", "CLOSE"]
+            },
+            {
+                id: 13,
+                text: "在DELETE触发程序中，可使用____关键字引用被删除的记录。",
+                answer: ["OLD"]
+            },
+            {
+                id: 14,
+                text: "MySQL安装目录下____目录用于放置一些可执行文件。",
+                answer: ["bin"]
+            },
+            {
+                id: 15,
+                text: "如果事务T已在数据R上加了X锁，则其他事务在数据R上____ 。",
+                answer: ["不能加任何锁"]
+            },
+            {
+                id: 16,
+                text: "Mysql索引的作用:设置了合适的索引之后，数据库利用各种快速定位技术，能够大大____，这是创建所有的最主要的目的;当表很大或查询涉及到多个表时，使用索引可以成千上万倍地提高查询速度;通过____索引，可以保证数据表中每一行数据的唯一性;可以加快表与表之间的____;在使用分组和排序时，可大大减少____的时间。",
+                answer: ["加快查询速度", "创建唯一性", "连接速度", "分组和排序"]
+            },
+            {
+                id: 17,
+                text: "MySQL提供的____可用于刷新用户权限。",
+                answer: ["FLUSH PRIVILEGES"]
+            },
+            {
+                id: 18,
+                text: "在INSERT触发程序中，可使用____关键字引用新插入的记录。",
+                answer: ["new"]
+            },
+            {
+                id: 19,
+                text: "WHERE与HAVING之间的区别是:\n①____操作是从数据表中获取数据，用于将数据从磁盘存储到内存中，而HAVING是对已存放到内存中的数据进行操作。\n②HAVING位于GROUP BY子句后，而WHERE位于____ 子句之前。\n③HAVING关键字后可以跟聚合函数，而WHERE则不可以。通常情况下，____关键字与GROUP BY一起使用，对分组后的结果进行过滤。",
+                answer: ["WHERE", "GROUP BY", "HAVING"]
+            },
+            {
+                id: 20,
+                text: "在 MySQL 中，函数体中必须含有一条有效的____语句。",
+                answer: ["current user()"]
+            }
+        ];
 
         /* ========== 逻辑实现 ========== */
-        function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
-        let questions = [], idx = 0, userAnswers = [];
-        let awaitingNext = false;
+            function shuffle(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+            let questions = [], idx = 0, userAnswers = [];
+            let awaitingNext = false;
 
-        const $ = (id) => document.getElementById(id);
-        $('startBtn').onclick = startQuiz;
-        $('submitBtn').onclick = submitAnswer;
-        $('prevBtn').onclick = prevQuestion;
-        $('restartBtn').onclick = () => { $('resultsArea').classList.add('hidden'); $('setup').classList.remove('hidden'); };
+            // 判断答案是否正确（选择题 / 填空题）
+            function isCorrect(q, ua) {
+                if (q.options) return ua === q.answer;                           // 选择题
+                if (!Array.isArray(ua) || ua.length !== q.answer.length) return false; // 填空题
+                return ua.every((v, i) => v.trim().toLowerCase() === q.answer[i].trim().toLowerCase());
+            }
 
-        function startQuiz() {
-            const sel = $('chapterSelect').value;
-            questions = [
-                ...(sel === '1' ? CHAPTER_1 : []),
-                ...(sel === '2' ? CHAPTER_2 : []),
-                ...(sel === '3' ? CHAPTER_3 : []),
-                ...(sel === '4' ? CHAPTER_4 : []),
-                ...(sel === '5' ? CHAPTER_5 : []),
-                ...(sel === '6' ? CHAPTER_6 : []),
-                ...(sel === 'all' ? CHAPTER_1.concat(CHAPTER_2, CHAPTER_3, CHAPTER_4, CHAPTER_5, CHAPTER_6) : [])
-            ];
-            if (!questions.length) { alert('该章节暂未添加题目！'); return; }
-            shuffle(questions);
-            idx = 0;
-            userAnswers = new Array(questions.length).fill(null);
-            awaitingNext = false;
-            $('setup').classList.add('hidden'); $('quizArea').classList.remove('hidden');
-            render();
-        }
+            const $ = id => document.getElementById(id);
+            $('startBtn').onclick = startQuiz;
+            $('submitBtn').onclick = submitAnswer;
+            $('prevBtn').onclick = () => { if (idx) { idx--; render(); } };
+            $('restartBtn').onclick = () => { $('resultsArea').classList.add('hidden'); $('setup').classList.remove('hidden'); };
 
-        function render() {
-            const q = questions[idx];
-            $('progress').textContent = `题目 ${idx + 1} / ${questions.length}`;
-            $('questionText').textContent = q.text;
-            const f = $('optionsForm'); f.innerHTML = '';
-            q.options.forEach((op, i) => {
-                f.insertAdjacentHTML('beforeend',
-                    `<label class="option-label"><input type="radio" name="opt" value="${i}"> ${String.fromCharCode(65 + i)}. ${op}</label>`);
-            });
-            // 恢复已做答案并显示反馈
-            const saved = userAnswers[idx];
-            if (saved !== null) {
-                document.querySelector(`input[name="opt"][value="${saved}"]`).checked = true;
-                const ca = q.answer;
-                if (saved === ca) {
-                    $('feedback').textContent = '回答正确！';
-                    $('feedback').classList.add('correct');
-                } else {
-                    $('feedback').textContent = `回答错误！正确答案是 ${String.fromCharCode(65 + ca)}.`;
-                    $('feedback').classList.add('incorrect');
-                }
-                awaitingNext = true;
-                $('submitBtn').textContent = idx + 1 === questions.length ? '查看结果' : '下一题';
-            } else {
-                $('feedback').textContent = '';
-                $('feedback').className = 'feedback';
+            function startQuiz() {
+                const sel = $('chapterSelect').value;
+                questions = [
+                    ...(sel === '1' ? CHAPTER_1 : []),
+                    ...(sel === '2' ? CHAPTER_2 : []),
+                    ...(sel === '3' ? CHAPTER_3 : []),
+                    ...(sel === '4' ? CHAPTER_4 : []),
+                    ...(sel === '5' ? CHAPTER_5 : []),
+                    ...(sel === '6' ? CHAPTER_6 : []),
+                    ...(sel === 'all' ? CHAPTER_1.concat(CHAPTER_2, CHAPTER_3, CHAPTER_4, CHAPTER_5, CHAPTER_6) : [])
+                ];
+                if (!questions.length) { alert('该章节暂未添加题目！'); return; }
+                shuffle(questions);
+                idx = 0;
+                userAnswers = new Array(questions.length).fill(null);
                 awaitingNext = false;
-                $('submitBtn').textContent = '提交答案';
+                $('setup').classList.add('hidden'); $('quizArea').classList.remove('hidden');
+                render();
             }
-            // 首题禁用“上一题”
-            $('prevBtn').disabled = (idx === 0);
-        }
 
-        function submitAnswer() {
-            if (!awaitingNext) {
-                const sel = document.querySelector('input[name="opt"]:checked');
-                if (!sel) { alert('请选择一个选项！'); return; }
-                const ua = +sel.value, ca = questions[idx].answer;
-                if (ua === ca) {
-                    $('feedback').textContent = '回答正确！';
-                    $('feedback').classList.add('correct');
+            function render() {
+                const q = questions[idx];
+                $('progress').textContent = `题目 ${idx + 1} / ${questions.length}`;
+                $('questionText').textContent = q.text;
+                const f = $('optionsForm'); f.innerHTML = '';
+
+                if (q.options) {
+                    // --- 选择题 ---
+                    q.options.forEach((op, i) => {
+                        f.insertAdjacentHTML('beforeend',
+                            `<label class="option-label"><input type="radio" name="opt" value="${i}"> ${String.fromCharCode(65 + i)}. ${op}</label>`);
+                    });
                 } else {
-                    $('feedback').textContent = `回答错误！正确答案是 ${String.fromCharCode(65 + ca)}.`;
-                    $('feedback').classList.add('incorrect');
+                    // --- 填空题 ---
+                    q.answer.forEach((_, i) => {
+                        f.insertAdjacentHTML('beforeend',
+                            `<label class="option-label">空${i + 1}: <input type="text" name="blank${i}" class="blank-input"></label>`);
+                    });
                 }
-                userAnswers[idx] = ua;
-                awaitingNext = true;
-                $('submitBtn').textContent = idx + 1 === questions.length ? '查看结果' : '下一题';
-            } else {
-                awaitingNext = false; idx++;
-                if (idx < questions.length) render(); else showResult();
-            }
-        }
 
-        function prevQuestion() {
-            if (idx === 0) return;
-            idx--;
-            render();
-        }
+                // 恢复已做答案并显示反馈
+                const saved = userAnswers[idx];
+                if (saved !== null) {
+                    if (q.options) { document.querySelector(`input[name="opt"][value="${saved}"]`).checked = true; }
+                    else { saved.forEach((v, i) => { const inp = document.querySelector(`input[name="blank${i}"]`); if (inp) inp.value = v; }); }
 
-        function showResult() {
-            $('quizArea').classList.add('hidden');
-            $('resultsArea').classList.remove('hidden');
-            let correctCount = 0;
-            const wrongItems = [];
-            userAnswers.forEach((ua, i) => {
-                if (ua === questions[i].answer) {
-                    correctCount++;
+                    $('feedback').textContent = isCorrect(q, saved) ? '回答正确！' :
+                        (q.options ? `回答错误！正确答案是 ${String.fromCharCode(65 + q.answer)}.` : `回答错误！正确答案：${q.answer.join('，')}`);
+                    $('feedback').className = isCorrect(q, saved) ? 'feedback correct' : 'feedback incorrect';
+                    awaitingNext = true;
+                    $('submitBtn').textContent = idx + 1 === questions.length ? '查看结果' : '下一题';
                 } else {
-                    wrongItems.push({ q: questions[i], ua });
+                    $('feedback').textContent = ''; $('feedback').className = 'feedback';
+                    awaitingNext = false; $('submitBtn').textContent = '提交答案';
                 }
-            });
-            const acc = (correctCount / questions.length * 100).toFixed(2);
-            $('scoreText').textContent = `共回答 ${questions.length} 题，正确 ${correctCount} 题，正确率 ${acc}%`;
-            const wl = $('wrongList'); wl.innerHTML = '';
-            if (!wrongItems.length) {
-                wl.textContent = '全部答对，恭喜！';
-                return;
+                $('prevBtn').disabled = (idx === 0);
             }
-            wrongItems.forEach((w, i) => {
-                wl.insertAdjacentHTML('beforeend',
-                    `<div class="wrong-question"><strong>题目${i + 1}：</strong>${w.q.text}<br>
-                     你的答案：${String.fromCharCode(65 + w.ua)}. ${w.q.options[w.ua]}<br>
-                     正确答案：${String.fromCharCode(65 + w.q.answer)}. ${w.q.options[w.q.answer]}</div>`);
-            });
-        }
+
+            function submitAnswer() {
+                const q = questions[idx];
+                if (!awaitingNext) {
+                    let ua;
+                    if (q.options) {
+                        const sel = document.querySelector('input[name="opt"]:checked');
+                        if (!sel) { alert('请选择一个选项！'); return; }
+                        ua = +sel.value;
+                    } else {
+                        ua = [...document.querySelectorAll('.blank-input')].map(i => i.value);
+                        if (ua.some(v => v.trim() === '')) { alert('请填写所有空！'); return; }
+                    }
+                    userAnswers[idx] = ua;
+
+                    $('feedback').textContent = isCorrect(q, ua) ? '回答正确！' :
+                        (q.options ? `回答错误！正确答案是 ${String.fromCharCode(65 + q.answer)}.` : `回答错误！正确答案：${q.answer.join('，')}`);
+                    $('feedback').className = isCorrect(q, ua) ? 'feedback correct' : 'feedback incorrect';
+
+                    awaitingNext = true;
+                    $('submitBtn').textContent = idx + 1 === questions.length ? '查看结果' : '下一题';
+                } else {
+                    awaitingNext = false; idx++;
+                    idx < questions.length ? render() : showResult();
+                }
+            }
+
+            function showResult() {
+                $('quizArea').classList.add('hidden'); $('resultsArea').classList.remove('hidden');
+                let correct = 0, wrongDetail = [];
+                userAnswers.forEach((ua, i) => {
+                    if (isCorrect(questions[i], ua)) correct++; else wrongDetail.push({ q: questions[i], ua });
+                });
+                $('scoreText').textContent = `共 ${questions.length} 题，正确 ${correct} 题，正确率 ${(correct / questions.length * 100).toFixed(2)}%`;
+                const wl = $('wrongList'); wl.innerHTML = '';
+                if (!wrongDetail.length) { wl.textContent = '全部答对，恭喜！'; return; }
+                wrongDetail.forEach((w, i) => {
+                    if (w.q.options) {
+                        wl.insertAdjacentHTML('beforeend',
+                            `<div class="wrong-question"><strong>题目${i + 1}：</strong>${w.q.text}<br>
+         你的答案：${String.fromCharCode(65 + w.ua)}. ${w.q.options[w.ua]}<br>
+         正确答案：${String.fromCharCode(65 + w.q.answer)}. ${w.q.options[w.q.answer]}</div>`);
+                    } else {
+                        wl.insertAdjacentHTML('beforeend',
+                            `<div class="wrong-question"><strong>题目${i + 1}：</strong>${w.q.text}<br>
+         你的答案：${w.ua.join('，')}<br>
+         正确答案：${w.q.answer.join('，')}</div>`);
+                    }
+                });
+            }
     </script>
 </body>
 
